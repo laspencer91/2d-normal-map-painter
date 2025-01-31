@@ -1,5 +1,7 @@
 # 🎨 2D Normal Map Painter
 
+> **IN ALPHA** - There may exist breaking bugs and a lack of features. This application is in very early development. Use at your own risk.
+
 A Qt-based desktop application for painting **2D normal maps**. This tool allows users to **paint normal maps on top of an image**, visualize normal directions in real-time using a **3D sphere**, and export the results. This is still under development.
 
 <div style="width: 100%; justify-content: center; display: flex; padding: 10px">
@@ -51,7 +53,10 @@ Ensure you have the following installed:
 1. **Load an Image**: Click `File > Open Image` to select a base texture.
 2. **Paint Normals**: Click and drag to paint normal values on the canvas.
 3. **Sample Normals**: Hover over painted pixels to view normals on the sphere.
-4. **Adjust Scale**: Resize the image and canvas dynamically.
+4. **Select Color You Are Sampling**: Press [ENTER] on keyboard to select a normal from the normal map.
+4. **Adjust Scale**: Resize the image and canvas dynamically with [Scroll Wheel].
+5. **Pan Image**: Pan the image by pressing in the scroll wheel and dragging.
+6. **Save Normal Map**: Click `File -> Save Normal Map` to save your image.
 
 ## 🏗️ Contributing
 Contributions are welcome! To get started:
@@ -62,12 +67,25 @@ Contributions are welcome! To get started:
 5. **Create a pull request** and describe your changes.
 
 ### 🔧 Development Roadmap
+
+--- **Essential** ---
 - [X] Scale / Pan normalmap image with the mouse wheel.
 - [X] Add **save functionality** for normal maps.
 - [ ] Scale / Pan for lighted preview.
-- [ ] Implement **brush size adjustments**.
-- [ ] Improve **performance optimizations**.
 - [ ] Implement **undo/redo support**.
+- [ ] Handles for the Normal Sphere Selector for all used normals. Allow clicking them to select a direction, or cycling through them with keyboard.
+- [ ] Allow moving the Normal Sphere Selector handle with arrow keys or touchpad.
+- [ ] Line drawing
+- [ ] Slider to adjust Normal Map overlay transparency.
+- [ ] Improve Ui Layout.
+  - Resize Top / Bottom halves
+  - Potentially create a more intuitive and useful layout.
+
+--- **Adding functionality beyond pixel art** ---
+- [ ] Brushes.
+- [ ] Brush size adjustments.
+- [ ] Blend modes
+- [ ] Performance optimizations.
 
 ## 📝 License
 This project is licensed under the **MIT License**.
