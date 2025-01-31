@@ -63,7 +63,6 @@ Contributions are welcome! To get started:
 
 ### 🔧 Development Roadmap
 - [ ] Scale / Pan an image with the mouse wheel.
-- [ ] 
 - [ ] Implement **brush size adjustments**.
 - [ ] Add **export functionality** for normal maps.
 - [ ] Improve **performance optimizations**.
