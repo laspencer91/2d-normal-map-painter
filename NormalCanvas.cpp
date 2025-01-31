@@ -65,6 +65,18 @@ void NormalCanvas::loadImage(const QString &filePath) {
     }
 }
 
+void NormalCanvas::saveNormalMap(const QString &filePath) const {
+    if (!normalMap.isNull()) {
+        if (normalMap.save(filePath)) {
+            qDebug() << "Normal map saved successfully to:" << filePath;
+        } else {
+            qDebug() << "Failed to save normal map!";
+        }
+    } else {
+        qDebug() << "Normal map is empty, nothing to save.";
+    }
+}
+
 void NormalCanvas::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
         setNormal(currentSampledNormal);

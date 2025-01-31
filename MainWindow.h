@@ -16,10 +16,11 @@ public:
 private:
     NormalCanvas *canvas;
     NormalSelectorSphere *sphere;
+    QString currentImageFilePath;
 
 private slots:
     void openImage();  // New slot for loading images
-
+    void saveNormalMap();
 };
 
 #endif // MAINWINDOW_H

@@ -21,19 +21,34 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     connect(canvas, &NormalCanvas::normalUpdated, sphere, &NormalSelectorSphere::onCanvasUpdatedNormal);
     connect(canvas, &NormalCanvas::sampledNormalChanged, sphere, &NormalSelectorSphere::onCanvasSampleUpdated);
 
-    // Create a menu -----------------
+    // ------------ Create a menu ----------------- //
     menuBar()->setNativeMenuBar(false);
-    QMenu *fileMenu = menuBar()->addMenu("File");
-    QAction *openAction = new QAction("Open Image", this);
-    fileMenu->addAction(openAction);
 
+    QMenu *fileMenu = menuBar()->addMenu("File");
+    QAction *openAction = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentOpen), "Open Image", this);
+    QAction *saveAction = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentSaveAs), "Save Normal Map", this);
+
+    fileMenu->addAction(openAction);
+    fileMenu->addAction(saveAction);
+
+    // ------------ Menu Action Signals ----------------- //
     connect(openAction, &QAction::triggered, this, &MainWindow::openImage);
+    connect(saveAction, &QAction::triggered, this, &MainWindow::saveNormalMap);
 }
 
 void MainWindow::openImage() {
-    QString filePath = QFileDialog::getOpenFileName(this, "Open Image", "", "Images (*.png *.jpg *.bmp)");
+    currentImageFilePath = QFileDialog::getOpenFileName(this, "Open Image", "", "Images (*.png *.jpg *.bmp)");
+    if (!currentImageFilePath.isEmpty()) {
+        canvas->loadImage(currentImageFilePath);  // Pass the file path to the canvas
+    }
+}
+
+void MainWindow::saveNormalMap() {
+    const QFileInfo fileInfo(currentImageFilePath);
+    const QString newFilePath(fileInfo.baseName() + "/" + fileInfo.baseName() + "_normal");
+    const QString filePath = QFileDialog::getSaveFileName(this, "Save Normal Map", newFilePath, "PNG Images (*.png);;JPEG Images (*.jpg)");
     if (!filePath.isEmpty()) {
-        canvas->loadImage(filePath);  // Pass the file path to the canvas
+        canvas->saveNormalMap(filePath);
     }
 }
 

@@ -11,6 +11,7 @@ class NormalCanvas : public QOpenGLWidget, protected QOpenGLFunctions {
 public:
     NormalCanvas(QWidget *parent = nullptr);
     void loadImage(const QString &filePath);
+    void saveNormalMap(const QString &filePath) const;
 
 protected:
     void initializeGL() override;
