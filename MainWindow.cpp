@@ -7,11 +7,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     // ReSharper disable CppDFAMemoryLeak - QWidgets and Components are managed by the parent.
     QWidget *centralWidget = new QWidget(this);
     QVBoxLayout *layout = new QVBoxLayout;
+    QHBoxLayout *topHalfLayout = new QHBoxLayout;
 
+    preview = new PreviewCanvas(this);
     sphere = new NormalSelectorSphere(this);
     canvas = new NormalCanvas(this);
 
-    layout->addWidget(sphere, 1, Qt::AlignCenter);
+    topHalfLayout->addWidget(sphere, 1, Qt::AlignCenter);
+    topHalfLayout->addWidget(preview, 1, Qt::AlignCenter);
+
+    layout->addLayout(topHalfLayout);
     layout->addWidget(canvas, 1);
 
     centralWidget->setLayout(layout);
@@ -20,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     connect(sphere, &NormalSelectorSphere::normalSelected, canvas, &NormalCanvas::onSphereSelectedNormal);
     connect(canvas, &NormalCanvas::normalUpdated, sphere, &NormalSelectorSphere::onCanvasUpdatedNormal);
     connect(canvas, &NormalCanvas::sampledNormalChanged, sphere, &NormalSelectorSphere::onCanvasSampleUpdated);
+    connect(canvas, &NormalCanvas::normalMapPaintChanged, preview, &PreviewCanvas::onNormalMapPaintAdjusted);
 
     // ------------ Create a menu ----------------- //
     menuBar()->setNativeMenuBar(false);
@@ -40,6 +46,7 @@ void MainWindow::openImage() {
     currentImageFilePath = QFileDialog::getOpenFileName(this, "Open Image", "", "Images (*.png *.jpg *.bmp)");
     if (!currentImageFilePath.isEmpty()) {
         canvas->loadImage(currentImageFilePath);  // Pass the file path to the canvas
+        updatePreview();
     }
 }
 
@@ -50,6 +57,10 @@ void MainWindow::saveNormalMap() {
     if (!filePath.isEmpty()) {
         canvas->saveNormalMap(filePath);
     }
+}
+
+void MainWindow::updatePreview() const {
+    preview->setImages(&canvas->getBaseImage(), &canvas->getNormalMap());
 }
 
 MainWindow::~MainWindow() {}

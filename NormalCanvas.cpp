@@ -137,6 +137,7 @@ void NormalCanvas::applyPaint(int screenX, int screenY) {
         normalMap.setPixelColor(imagePos.x(), imagePos.y(), color);
 
         // Force a repaint
+        emit normalMapPaintChanged();
         update();
     }
 }
@@ -149,6 +150,7 @@ void NormalCanvas::removePaint(int screenX, int screenY) {
         normalMap.setPixelColor(imagePos.x(), imagePos.y(), Qt::black);
 
         // Force a repaint
+        emit normalMapPaintChanged();
         update();
     }
 }
@@ -202,4 +204,12 @@ void NormalCanvas::fitImageInCanvas() {
             scaleFactor = height() / containerHeight;
         }
     }
+}
+
+QImage &NormalCanvas::getBaseImage() {
+    return baseImage;
+}
+
+QImage &NormalCanvas::getNormalMap() {
+    return normalMap;
 }

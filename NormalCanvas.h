@@ -12,6 +12,8 @@ public:
     NormalCanvas(QWidget *parent = nullptr);
     void loadImage(const QString &filePath);
     void saveNormalMap(const QString &filePath) const;
+    QImage &getBaseImage();
+    QImage &getNormalMap();
 
 protected:
     void initializeGL() override;
@@ -24,6 +26,7 @@ protected:
 signals:
     void sampledNormalChanged(QVector3D normal);
     void normalUpdated(QVector3D normal);
+    void normalMapPaintChanged();
 
 public slots:
     void onSphereSelectedNormal(const QVector3D &normal);
