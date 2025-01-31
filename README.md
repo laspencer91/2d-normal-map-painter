@@ -37,7 +37,10 @@ Ensure you have the following installed:
    cd 2d-normal-map-painter
    ```
 2. Configure and build using CMake:
+
+    *You must configure your **CMakeLists.txt** so that `CMAKE_PREFIX_PATH` points to your local Qt installation.*
    ```bash
+   // This is an example and may need to be updated. CLion has been responsible for executing cmake so far.
    mkdir build && cd build
    cmake ..
    cmake --build .
