@@ -8,6 +8,8 @@ A Qt-based desktop application for painting **2D normal maps**. This tool allows
    <img src="screenshots/preview-screen.png" alt="preview" width="400" style="align-self: center; box-shadow: 0 0 20px black"/>
 </div>
 
+### [LATEST RELEASE](https://github.com/laspencer91/2d-normal-map-painter/releases/tag/v0.0.1) - *v0.0.1*
+
 ## ✨ Features
 - Load and display an image as a painting reference.
 - Paint **normal maps** with customizable brush directions.
