@@ -62,9 +62,10 @@ Contributions are welcome! To get started:
 5. **Create a pull request** and describe your changes.
 
 ### 🔧 Development Roadmap
-- [ ] Scale / Pan an image with the mouse wheel.
+- [X] Scale / Pan normalmap image with the mouse wheel.
+- [X] Add **save functionality** for normal maps.
+- [ ] Scale / Pan for lighted preview.
 - [ ] Implement **brush size adjustments**.
-- [ ] Add **export functionality** for normal maps.
 - [ ] Improve **performance optimizations**.
 - [ ] Implement **undo/redo support**.
 
