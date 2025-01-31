@@ -23,6 +23,9 @@ void NormalSphere::resizeEvent(QResizeEvent *event) {
 }
 
 void NormalSphere::paintGL() {
+    glClearColor(0, 0, 0, 1);
+    glClear(GL_COLOR_BUFFER_BIT);
+
     QPainter painter(this);
     painter.setBrush(Qt::gray);
 
@@ -38,6 +41,12 @@ void NormalSphere::paintGL() {
     // Draw the dot at the calculated position
     painter.setBrush(Qt::white);
     painter.drawEllipse(QPoint(dotX, dotY), 5, 5);  // Small circle (radius 5)
+
+    int sampledX = static_cast<int>(centerX + (sampledNormal.x() * 0.5 + 0.5) * (sphereDrawSize));
+    int sampledY = static_cast<int>(centerY + (-sampledNormal.y() * 0.5 + 0.5) * (sphereDrawSize)); // Invert Y-axis
+
+    painter.setBrush(QColor(30, 100, 210, 185));
+    painter.drawEllipse(QPoint(sampledX, sampledY), 5, 5);  // Small circle (radius 5)
 }
 
 void NormalSphere::mouseMoveEvent(QMouseEvent *event) {
@@ -57,5 +66,11 @@ void NormalSphere::updateNormal(QMouseEvent *event) {
 
     currentNormal = QVector3D(x, y, z).normalized();
     emit normalChanged(currentNormal);
+    update();
+}
+
+void NormalSphere::updateSampledNormal(const QVector3D normal) {
+    qDebug() << "NormalSphere::updateSampledNormal";
+    sampledNormal = normal;
     update();
 }

@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     fileMenu->addAction(openAction);
 
     connect(openAction, &QAction::triggered, this, &MainWindow::openImage);
+    connect(canvas, &NormalCanvas::sampledNormalChanged, sphere, &NormalSphere::updateSampledNormal);
 }
 
 void MainWindow::openImage() {

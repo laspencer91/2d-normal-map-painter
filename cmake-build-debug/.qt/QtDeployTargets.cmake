@@ -1,2 +1,0 @@
-set(__QT_DEPLOY_TARGET_2d_normal_map_painter_FILE /Users/loganspencer/CLionProjects/2d-normal-map-painter/cmake-build-debug/2d_normal_map_painter)
-set(__QT_DEPLOY_TARGET_2d_normal_map_painter_TYPE EXECUTABLE)

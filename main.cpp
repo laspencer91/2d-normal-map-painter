@@ -10,5 +10,7 @@ int main(int argc, char *argv[]) {
     window.setMinimumWidth(800);
     window.setMinimumHeight(600);
 
+    qDebug() << "Application started successfully.";
+
     return app.exec();  // Start the event loop
 }

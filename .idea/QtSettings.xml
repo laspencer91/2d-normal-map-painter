@@ -7,8 +7,8 @@
         <entry key="Debug">
           <value>
             <PerProfileState>
-              <option name="myQmlPath" value="$USER_HOME$/Qt/6.8.2/macos/qml" />
-              <option name="myQtBinPath" value="$USER_HOME$/Qt/6.8.2/macos/bin" />
+              <option name="myQmlPath" value="$PROJECT_DIR$/../../../../Qt/6.8.2/mingw_64/qml" />
+              <option name="myQtBinPath" value="$PROJECT_DIR$/../../../../Qt/6.8.2/mingw_64/bin" />
             </PerProfileState>
           </value>
         </entry>
