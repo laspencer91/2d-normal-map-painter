@@ -3,8 +3,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "normalcanvas.h"
-#include "normalsphere.h"
+#include "NormalCanvas.h"
+#include "NormalSelectorSphere.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -15,7 +15,7 @@ public:
 
 private:
     NormalCanvas *canvas;
-    NormalSphere *sphere;
+    NormalSelectorSphere *sphere;
 
 private slots:
     void openImage();  // New slot for loading images

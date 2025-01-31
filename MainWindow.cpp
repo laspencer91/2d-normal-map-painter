@@ -1,5 +1,4 @@
-// mainwindow.cpp
-#include "mainwindow.h"
+#include "MainWindow.h"
 #include <QVBoxLayout>
 #include <QMenuBar>
 #include <QFileDialog>
@@ -9,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     QWidget *centralWidget = new QWidget(this);
     QVBoxLayout *layout = new QVBoxLayout;
 
-    sphere = new NormalSphere(this);
+    sphere = new NormalSelectorSphere(this);
     canvas = new NormalCanvas(this);
 
     layout->addWidget(sphere, 1, Qt::AlignCenter);
@@ -18,7 +17,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     centralWidget->setLayout(layout);
     setCentralWidget(centralWidget);
 
-    connect(sphere, &NormalSphere::normalChanged, canvas, &NormalCanvas::setNormal);
+    connect(sphere, &NormalSelectorSphere::normalSelected, canvas, &NormalCanvas::onSphereSelectedNormal);
+    connect(canvas, &NormalCanvas::normalUpdated, sphere, &NormalSelectorSphere::onCanvasUpdatedNormal);
+    connect(canvas, &NormalCanvas::sampledNormalChanged, sphere, &NormalSelectorSphere::onCanvasSampleUpdated);
 
     // Create a menu -----------------
     menuBar()->setNativeMenuBar(false);
@@ -27,7 +28,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     fileMenu->addAction(openAction);
 
     connect(openAction, &QAction::triggered, this, &MainWindow::openImage);
-    connect(canvas, &NormalCanvas::sampledNormalChanged, sphere, &NormalSphere::updateSampledNormal);
 }
 
 void MainWindow::openImage() {
